@@ -1,1 +1,5 @@
-const app = angular.module('app', ['ngRoute']);
+(function () {
+    'use strict';
+    
+    const app = angular.module('app', ['ngRoute']);
+})();
