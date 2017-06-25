@@ -4,22 +4,18 @@
 	angular.module('app')
 		.controller('recipesController', function ($scope, dataService, $location) {
 
-			dataService.getAllCategories(function (response) {
+			$scope.getAllCategories = dataService.getAllCategories(function (response) {
 				$scope.recipeCategories = response.data;
 			});
 
-			dataService.getAllRecipes(function (response) {
+			$scope.getAllRecipes = dataService.getAllRecipes(function (response) {
 				$scope.recipes = response.data;
+				console.log($scope.recipes);
 			});
 
-			$scope.filterRecipes = function (category) {
-				if (category === null) {
-					dataService.getAllCategories();
-				} else {
-					dataService.getCategoryRecipes(category, function (response) {
-						$scope.categoryRecipes = response.data;
-					})
-				}
-			}
+			$scope.goToRecipeDetail = function (recipeId) {
+				const path = `/edit/${recipeId}`;
+				$location.url(path);
+			};
 		});
 })();
