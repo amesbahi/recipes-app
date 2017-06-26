@@ -42,7 +42,7 @@
 
 			// Add a recipe
 			this.addRecipe = function(recipe, callback) {
-				$http.post(`http://localhost:5000/api/recipes/${recipe}`)
+				$http.post(`http://localhost:5000/api/recipes/`, recipe)
 				.then(callback);
 			};
 

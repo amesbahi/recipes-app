@@ -21,13 +21,62 @@
             });
 
             $scope.cancelRecipe = function () {
-                $location.path('/');
+                $location.url('/');
             }
 
+            // $scope.saveRecipe = function (recipe) {
+            //     dataService.addRecipe($scope.recipe, function () {
+            //         if ($location.url('/add')) {
+            //             $scope.recipes.push($scope.recipe);
+            //             $location.url('/');
+            //         }
+
+            //         if ($location.url('/edit/')) {
+            //             dataService.updateRecipeById($scope.recipe._id, function () {
+            //                 $location.url('/');
+            //             });
+            //         }
+            //     });
+            // }
+
             $scope.saveRecipe = function (recipe) {
-                dataService.addRecipe($scope.recipe, function (response) {
-                    $scope.recipes.push($scope.recipe);
-                    $location.url('/');
+                if ($location.url('/edit/')) {
+                    dataService.updateRecipeById($scope.recipe._id, function () {
+                        $location.url('/');
+                    });
+                }
+
+                if ($location.url('/add')) {
+                    dataService.addRecipe($scope.recipe, function () {
+                        $scope.recipes.push($scope.recipe);
+                        $location.url('/');
+                    });
+                }
+            }
+
+            // delete a recipe ingredient
+            $scope.deleteRecipeIngredient = function ($index) {
+                $scope.recipe.ingredients.splice($index, 1);
+            }
+
+            // add a recipe ingredient
+            $scope.addRecipeIngredient = function () {
+                $scope.recipe.ingredients.push({
+                    foodItem: '',
+                    condition: '',
+                    amount: ''
+                });
+            }
+
+            // delete recipe step
+            $scope.deleteRecipeStep = function ($index) {
+                $scope.recipe.steps.splice($index, 1);
+            }
+
+            // add a recipe step
+            $scope.addRecipeStep = function () {
+                $scope.recipe.steps.push({
+                    description: ''
                 });
             }
 
