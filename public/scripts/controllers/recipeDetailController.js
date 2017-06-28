@@ -3,7 +3,7 @@
 
     angular.module('app')
         .controller('recipeDetailController', function ($scope, dataService, $location, $routeParams) {
-            // categories for dropdown
+            // get all categories
             $scope.getAllCategories = dataService.getAllCategories(function (response) {
                 $scope.recipeCategories = response.data;
                 console.log($scope.recipeCategories);
@@ -14,41 +14,28 @@
                 console.log($scope.recipes);
             });
 
-            // food items for dropdown
+            // get all food items
             $scope.getAllFoodItems = dataService.getAllFoodItems(function (response) {
                 $scope.foodItems = response.data;
                 console.log($scope.foodItems);
             });
 
+            // return user to recipes screen from recipe detail
             $scope.cancelRecipe = function () {
                 $location.url('/');
             }
 
-            // $scope.saveRecipe = function (recipe) {
-            //     dataService.addRecipe($scope.recipe, function () {
-            //         if ($location.url('/add')) {
-            //             $scope.recipes.push($scope.recipe);
-            //             $location.url('/');
-            //         }
-
-            //         if ($location.url('/edit/')) {
-            //             dataService.updateRecipeById($scope.recipe._id, function () {
-            //                 $location.url('/');
-            //             });
-            //         }
-            //     });
-            // }
-
+            // save a recipe
             $scope.saveRecipe = function (recipe) {
-                if ($location.url('/edit/')) {
-                    dataService.updateRecipeById($scope.recipe._id, function () {
+                if ($location.url() === `/edit/${recipe._id}`) {
+                    dataService.updateRecipeById(recipe._id, recipe, function () {
                         $location.url('/');
                     });
                 }
 
-                if ($location.url('/add')) {
-                    dataService.addRecipe($scope.recipe, function () {
-                        $scope.recipes.push($scope.recipe);
+                if ($location.url() === `/add`) {
+                    dataService.addRecipe(recipe, function () {
+                        $scope.recipes.push(recipe);
                         $location.url('/');
                     });
                 }
@@ -104,7 +91,7 @@
                         ]
                     }
                 } else {
-                    // show the specified recipe
+                    // show the selected recipe
                     dataService.getRecipeById($routeParams.id, function (response) {
                         $scope.recipe = response.data;
                         console.log($scope.recipe);

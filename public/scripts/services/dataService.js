@@ -35,8 +35,8 @@
 			};
 
 			// Update recipe by id
-			this.updateRecipeById = function(id, callback) {
-				$http.put(`http://localhost:5000/api/recipes/${id}`)
+			this.updateRecipeById = function(id, recipe, callback) {
+				$http.put(`http://localhost:5000/api/recipes/${id}`, recipe)
 				.then(callback);
 			};
 
