@@ -22,16 +22,16 @@
   <a ng-click="goToRecipeDetail(recipe._id)">
     <div class="grid-70">
       <p>
-        <h1>{{recipe.name}}</h1>
+        <h1 class="recipe-hover-state">{{recipe.name}}</h1>
       </p>
-      <p>{{recipe.description}}</p>
+      <p class="recipe-hover-state">{{recipe.description}}</p>
     </div>
   </a>
   <div class="hoverBlock">
     <div class="grid-30">
       <div class="flush-right">
         <p>
-          <a ng-click="goToRecipeDetail(recipe._id)"> <img src="images/edit.svg" height="12px"> Edit </a>
+          <a ng-click="goToRecipeDetail(recipe._id)" class="edit-hover-state"> <img src="images/edit.svg" height="12px"> Edit </a>
           <a class="no-action-link" ng-click="deleteRecipe(recipe._id)"> <img src="images/delete.svg" height="12px"> Delete </a>
         </p>
       </div>

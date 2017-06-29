@@ -12,7 +12,6 @@
 			// get all recipes
 			$scope.getAllRecipes = dataService.getAllRecipes(function (response) {
 				$scope.recipes = response.data;
-				console.log($scope.recipes);
 			});
 
 			// go to recipe detail

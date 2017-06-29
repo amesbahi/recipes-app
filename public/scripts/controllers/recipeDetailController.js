@@ -6,18 +6,15 @@
             // get all categories
             $scope.getAllCategories = dataService.getAllCategories(function (response) {
                 $scope.recipeCategories = response.data;
-                console.log($scope.recipeCategories);
             });
 
             $scope.getAllRecipes = dataService.getAllRecipes(function (response) {
                 $scope.recipes = response.data;
-                console.log($scope.recipes);
             });
 
             // get all food items
             $scope.getAllFoodItems = dataService.getAllFoodItems(function (response) {
                 $scope.foodItems = response.data;
-                console.log($scope.foodItems);
             });
 
             // return user to recipes screen from recipe detail
@@ -94,7 +91,6 @@
                     // show the selected recipe
                     dataService.getRecipeById($routeParams.id, function (response) {
                         $scope.recipe = response.data;
-                        console.log($scope.recipe);
                     });
                 }
             };
