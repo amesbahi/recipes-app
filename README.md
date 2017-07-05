@@ -1,4 +1,3 @@
-# recipes-app
 A single page recipes app built using AngularJS.
 
 To use the app, follow these instructions:
@@ -9,3 +8,5 @@ To use the app, follow these instructions:
 4. Run the command npm start to run the Node.js application.
 
 To launch the application, open your web browser and browse to http://localhost:5000/
+
+The application includes two screens: a screen that displays a list of recipes and a detail screen that allows the user to add or edit recipes.
